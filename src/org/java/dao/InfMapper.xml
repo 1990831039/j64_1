@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.InfMapper">
+
+    <select id="findAll" resultType="map" >
+        select s.id,s.name,s.sex,g.gradename,s.bir,s.score from Student s join grade g on (s.gradeId=g.gradeId)
+       <where>
+           <if test="name!=null and name!='' ">
+               AND name LIKE '%${name}%'
+           </if>
+           <if test="sex!=null and sex!='' and sex != '全部' ">
+               AND sex = #{sex}
+           </if>
+        </where>
+             limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from Student s  join grade g on (s.gradeId=g.gradeId)
+        <where>
+            <if test="name!=null and name!=''  ">
+            AND name LIKE '%${name}%'
+        </if>
+            <if test="sex!=null and sex!='' and sex != '全部' ">
+                AND sex = #{sex}
+            </if>
+        </where>
+    </select>
+
+
+
+    <select id="findId" resultType="map">
+       select s.id,s.name,s.sex,g.gradename,s.bir,s.score from Student s join grade g on (s.gradeId=g.gradeId) where id=#{id}
+    </select>
+
+    <insert id="add">
+        insert student values(null,#{name},#{sex},#{grade},#{bir},#{score})
+    </insert>
+
+    <update id="update">
+        update student set name = #{name},sex = #{sex},gradeId = #{grade},bir = #{bir},score = #{score} where id=#{id}
+    </update>
+</mapper>

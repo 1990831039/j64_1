@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="spring-ssm:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/spring_ssm_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="spring-ssm" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="spring-ssm/web/Web" />
+    </root>
+  </artifact>
+</component>
